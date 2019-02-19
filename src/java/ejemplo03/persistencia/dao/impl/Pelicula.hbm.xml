@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-feb-2019 10:12:49 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="cartelera" name="ejemplo03.dominio.Pelicula" optimistic-lock="version" table="pelicula">
+    <id name="idPelicula" type="java.lang.Integer">
+      <column name="id_Pelicula"/>
+      <generator class="identity"/>
+    </id>
+    <property name="tituloPelicula" type="string">
+      <column length="500" name="titulo_Pelicula" not-null="true"/>
+    </property>
+    <property name="directorPelicula" type="string">
+      <column length="500" name="director_Pelicula" not-null="true"/>
+    </property>
+    <property name="interpretePelicula" type="string">
+      <column length="500" name="interprete_Pelicula" not-null="true"/>
+    </property>
+    <property name="categoriaPelicula" type="string">
+      <column length="500" name="categoria_Pelicula" not-null="true"/>
+    </property>
+    <property name="duracionPelicula" type="string">
+      <column length="500" name="duracion_Pelicula" not-null="true"/>
+    </property>
+    <property name="sinopsisPelicula" type="string">
+      <column name="sinopsis_Pelicula" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="sesions" table="sesion">
+      <key>
+        <column name="id_Pelicula" not-null="true"/>
+      </key>
+      <one-to-many class="ejemplo03.dominio.Sesion"/>
+    </set>
+  </class>
+</hibernate-mapping>

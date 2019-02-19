@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-feb-2019 10:12:49 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="cartelera" name="ejemplo03.dominio.Cine" optimistic-lock="version" table="cine">
+    <id name="idCine" type="java.lang.Integer">
+      <column name="id_Cine"/>
+      <generator class="identity"/>
+    </id>
+    <property name="nombreCine" type="string">
+      <column length="500" name="nombre_Cine" not-null="true"/>
+    </property>
+    <property name="direcionCine" type="string">
+      <column length="500" name="direcion_Cine" not-null="true"/>
+    </property>
+    <property name="municipioCine" type="string">
+      <column length="500" name="municipio_Cine" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="sesions" table="sesion">
+      <key>
+        <column name="id_Cine" not-null="true"/>
+      </key>
+      <one-to-many class="ejemplo03.dominio.Sesion"/>
+    </set>
+  </class>
+</hibernate-mapping>

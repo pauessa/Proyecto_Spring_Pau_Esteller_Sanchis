@@ -4,12 +4,14 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate1?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
-    <property name="hibernate.connection.username">hibernate1</property>
-    <property name="hibernate.connection.password">hibernate1</property>
-
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/cartelera?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
+    <property name="hibernate.connection.username">cartelera1</property>
+    <property name="hibernate.connection.password">cartelera1</property>
     <property name="hibernate.show_sql">true</property>
-    
+    <mapping resource="ejemplo03/persistencia/dao/impl/Usuario.hbm.xml"/>
     <mapping resource="ejemplo03/persistencia/dao/impl/Profesor.hbm.xml"/>
+    <mapping resource="ejemplo03/persistencia/dao/impl/Cine.hbm.xml"/>
+    <mapping resource="ejemplo03/persistencia/dao/impl/Sesion.hbm.xml"/>
+    <mapping resource="ejemplo03/persistencia/dao/impl/Pelicula.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

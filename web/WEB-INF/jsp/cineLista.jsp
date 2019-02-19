@@ -1,15 +1,15 @@
 <%@page import="org.springframework.web.util.HtmlUtils"%>
-<%@page import="ejemplo03.dominio.Cine"%>
+<%@page import="ejemplo03.dominio.Profesor"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    List<Cine> cines = (List<Cine>) request.getAttribute("cines");
+    List<Profesor> profesores = (List<Profesor>) request.getAttribute("profesores");
 %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cines</title>
+        <title>Profesor</title>
         <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
         <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
         <script type="text/javascript"  src="<%=request.getContextPath()%>/js/jquery-1.9.0.js"></script>

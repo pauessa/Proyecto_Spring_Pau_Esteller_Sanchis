@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/src/java/ejemplo03/persistencia/dao/impl/SesionDAOImplCartelera.java</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/web/WEB-INF/jsp/profesorLista.jsp</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/src/java/com/fpmislata/persistencia/hibernate/HibernateUtil.java</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/src/java/ejemplo03/persistencia/dao/impl/PeliculaDAOImplCartelera.java</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/src/java/ejemplo03/persistencia/dao/impl/hibernate.reveng.xml</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/src/java/ejemplo03/persistencia/dao/impl/CineDAOImplCartelera.java</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/src/java/ejemplo03/persistencia/dao/CineDAO.java</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/web/WEB-INF/jsp/cine.jsp</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/web/WEB-INF/jsp/profesor.jsp</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/src/java/hibernate.cfg.xml</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/src/java/ejemplo03/persistencia/dao/impl/Pelicula.hbm.xml</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/web/WEB-INF/web.xml</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/src/java/ejemplo03/persistencia/dao/impl/Cine.hbm.xml</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/web/WEB-INF/jsp/error.jsp</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/src/java/ejemplo03/persistencia/dao/PeliculaDAO.java</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/src/java/ejemplo03/persistencia/dao/SesionDAO.java</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/src/java/ejemplo03/presentacion/CineController.java</file>
+            <file>file:/D:/MEGA/DAM2/Trimestre%202/Acceso_a_Datos/Tema%205/Proyecto_Spring_Pau_Esteller_Sanchis/src/java/ejemplo03/dominio/Cine.java</file>
+        </group>
+    </open-files>
+</project-private>
