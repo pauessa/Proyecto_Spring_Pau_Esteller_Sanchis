@@ -43,18 +43,14 @@
                 <h3>Cine</h3>
                 <form action="<%=urlAction%>" method="post" >
                     <fieldset>
-                        <label class="control-label" for="id_Cine">Id:</label>
-                        <input class="input-large disabled " id="id_Cine" name="id_Cine" type="text" value="${cine.id_Cine}" readonly="readonly">
+                        <label class="control-label" for="id">Id:</label>
+                        <input class="input-large disabled " id="id" name="id" type="text" value="${cine.idCine}" readonly="readonly">
 
-                        <label class="control-label" for="nombre">Nombre:</label>
-                        <input class="input-xlarge" id="nombre" type="text" name="nombre" value="${profesor.nombre}" >
-
-                        <label class="control-label" for="ape1">1º Apellido:</label>
-                        <input class="input-xlarge" id="ape1" type="text" name="ape1" value="${profesor.ape1}" >
-
-                        <label class="control-label" for="ape2">2º Apellido:</label>
-                        <input class="input-xlarge" id="ape2" type="text" name="ape2" value="${profesor.ape2}" >
-                    </fieldset>
+                        <label class="control-label" for="nombreCine">Nombre:</label>
+                        <input class="input-xlarge" id="nombrenombreCine" type="text" name="nombreCine" value="${cine.nombreCine}" >
+                        <label class="control-label" for="direcionCine">Direcion</label>
+                        <input class="input-xlarge" id="direcion" type="text" name="direcionCine" value="${cine.direcionCine}" >
+                        </fieldset>
                     <% if (request.getAttribute("bussinessMessages") != null) {%>
                     <div class="alert alert-error alert-block">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>

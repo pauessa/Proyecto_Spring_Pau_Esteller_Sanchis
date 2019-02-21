@@ -75,7 +75,7 @@ public class CineController {
         try {
             int id;
             try {
-                id = Integer.parseInt(request.getParameter("id_Cine"));
+                id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un id_Cine válido"));
             }
@@ -103,7 +103,7 @@ public class CineController {
         try {
             int id;
             try {
-                id = Integer.parseInt(request.getParameter("id_Cine"));
+                id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un id_Cine válido"));
             }
@@ -138,9 +138,9 @@ public class CineController {
         Cine cine = null;
         try {
             cine = cineDAO.create();
-            cine.setDirecionCine(request.getParameter("direcion"));
-            cine.setMunicipioCine(request.getParameter("minicipio"));
-            cine.setNombreCine(request.getParameter("nombre"));
+            cine.setDirecionCine(request.getParameter("direcionCine"));
+            cine.setMunicipioCine(request.getParameter("minicipioCine"));
+            cine.setNombreCine(request.getParameter("nombreCine"));
             //cine.setSesions(request.getParameter("sesion"));
 
 
@@ -175,7 +175,7 @@ public class CineController {
         try {
             int id;
             try {
-                id = Integer.parseInt(request.getParameter("id_Cine"));
+                id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un id_Cine válido"));
             }
@@ -183,9 +183,9 @@ public class CineController {
             if (cine == null) {
                 throw new BussinessException(new BussinessMessage(null, "Ya no existe el profesor."));
             }
-           cine.setDirecionCine(request.getParameter("direcion"));
-            cine.setMunicipioCine(request.getParameter("minicipio"));
-            cine.setNombreCine(request.getParameter("nombre"));
+           cine.setDirecionCine(request.getParameter("direcionCine"));
+            cine.setMunicipioCine(request.getParameter("minicipioCine"));
+            cine.setNombreCine(request.getParameter("nombreCine"));
 
             cineDAO.saveOrUpdate(cine);
 

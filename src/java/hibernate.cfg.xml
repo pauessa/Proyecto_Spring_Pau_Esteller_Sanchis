@@ -8,8 +8,6 @@
     <property name="hibernate.connection.username">cartelera1</property>
     <property name="hibernate.connection.password">cartelera1</property>
     <property name="hibernate.show_sql">true</property>
-    <mapping resource="ejemplo03/persistencia/dao/impl/Usuario.hbm.xml"/>
-    <mapping resource="ejemplo03/persistencia/dao/impl/Profesor.hbm.xml"/>
     <mapping resource="ejemplo03/persistencia/dao/impl/Cine.hbm.xml"/>
     <mapping resource="ejemplo03/persistencia/dao/impl/Sesion.hbm.xml"/>
     <mapping resource="ejemplo03/persistencia/dao/impl/Pelicula.hbm.xml"/>
