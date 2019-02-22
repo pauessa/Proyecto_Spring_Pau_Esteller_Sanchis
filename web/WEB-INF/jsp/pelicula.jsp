@@ -10,15 +10,15 @@
     switch (formOperation) {
         case Insert:
             labelButton = "Insertar";
-            urlAction = request.getContextPath() + "/cine/insert.html";
+            urlAction = request.getContextPath() + "/pelicula/insert.html";
             break;
         case Update:
             labelButton = "Actualizar";
-            urlAction = request.getContextPath() + "/cine/update.html";
+            urlAction = request.getContextPath() + "/pelicula/update.html";
             break;
         case Delete:
             labelButton = "Borrar";
-            urlAction = request.getContextPath() + "/cine/delete.html";
+            urlAction = request.getContextPath() + "/pelicula/delete.html";
             break;
         default:
             throw new RuntimeException("El valor de 'formOperation' no es válido" + formOperation);
@@ -44,12 +44,22 @@
                 <form action="<%=urlAction%>" method="post" >
                     <fieldset>
                         <label class="control-label" for="id">Id:</label>
-                        <input class="input-large disabled " id="id" name="id" type="text" value="${cine.idCine}" readonly="readonly">
+                        <input class="input-large disabled " id="id" name="id" type="text" value="${pelicula.idPelicula}" readonly="readonly">
 
                         <label class="control-label" for="nombreCine">Nombre:</label>
-                        <input class="input-xlarge" id="nombrenombreCine" type="text" name="nombreCine" value="${cine.nombreCine}" >
-                        <label class="control-label" for="direcionCine">Direcion</label>
-                        <input class="input-xlarge" id="direcion" type="text" name="direcionCine" value="${cine.direcionCine}" >
+                        <input class="input-xlarge" id="titulopelicula" type="text" name="titulopelicula" value="${pelicula.tituloPelicula}" >
+                       
+                        <label class="control-label" for="directorpelicula">Director:</label>
+                        <input class="input-xlarge" id="titulopelicula" type="text" name="directorpelicula" value="${pelicula.directorpelicula}" >
+               
+                        <label class="control-label" for="interpretepelicula">Interprete:</label>
+                        <input class="input-xlarge" id="titulopelicula" type="text" name="interpretepelicula" value="${pelicula.interpretepelicula}" >
+               
+                        <label class="control-label" for="categoriapelicula">Categoria:</label>
+                        <input class="input-xlarge" id="titulopelicula" type="text" name="categoriapelicula" value="${pelicula.categoriapelicula}" >
+               
+                        
+                        
                         </fieldset>
                     <% if (request.getAttribute("bussinessMessages") != null) {%>
                     <div class="alert alert-error alert-block">
@@ -69,7 +79,7 @@
                     <%} %>
                     <div class="form-actions">
                         <button id="aceptarBtn" class="btn btn-primary" type="submit"><%=labelButton%></button>
-                        <a class="btn" href="<%=request.getContextPath()%>/index2.html" >Cancelar</a>
+                        <a class="btn" href="<%=request.getContextPath()%>/index3.html" >Cancelar</a>
                     </div>
                 </form>
             </div>

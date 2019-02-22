@@ -7,7 +7,9 @@ package ejemplo03.presentacion;
 import com.fpmislata.persistencia.dao.BussinessException;
 import com.fpmislata.persistencia.dao.BussinessMessage;
 import ejemplo03.dominio.Cine;
+import ejemplo03.dominio.Pelicula;
 import ejemplo03.persistencia.dao.CineDAO;
+import ejemplo03.persistencia.dao.PeliculaDAO;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
@@ -25,49 +27,49 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Lorenzo González
  */
 @Controller
-public class CineController {
+public class PeliculaController {
 
     @Autowired
-    private CineDAO cineDAO;
+    private PeliculaDAO peliculaDAO;
     
-    @RequestMapping({"/index2.html"})
-    public ModelAndView listarCines(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping({"/index3.html"})
+    public ModelAndView listarPelicula(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
         try {
-            List<Cine> cines=cineDAO.findAll();
-            model.put("cines",cines);
-            viewName = "cinesLista";
+            List<Pelicula> pelicules=peliculaDAO.findAll();
+            model.put("pelicules",pelicules);
+            viewName = "peliculaLista";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/index3.html");
             viewName = "error";
         }
 
         return new ModelAndView(viewName, model);
     }
     
-    @RequestMapping({"/cine/newForInsert"})
+    @RequestMapping({"/pelicula/newForInsert"})
     public ModelAndView newForInsert(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
         try {
-            Cine cine = cineDAO.create();
+            Pelicula pelicula = peliculaDAO.create();
             model.put("formOperation", FormOperation.Insert);
-            model.put("cine", cine);
-            viewName = "cine";
+            model.put("pelicula", pelicula);
+            viewName = "pelicula";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/index3.html");
             viewName = "error";
         }
 
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/cine/readForUpdate"})
+    @RequestMapping({"/pelicula/readForUpdate"})
     public ModelAndView readForUpdate(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -77,26 +79,26 @@ public class CineController {
             try {
                 id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
-                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un id_Cine válido"));
+                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un id válido"));
             }
 
-            Cine cine = cineDAO.get(id);
-            if (cine == null) {
-                throw new BussinessException(new BussinessMessage(null, "No existe el profesor con id_Cine=" + id));
+            Pelicula pelicula = peliculaDAO.get(id);
+            if (pelicula == null) {
+                throw new BussinessException(new BussinessMessage(null, "No existe el profesor con id=" + id));
             }
             model.put("formOperation", FormOperation.Update);
-            model.put("cine", cine);
-            viewName = "cine";
+            model.put("pelicula", pelicula);
+            viewName = "pelicula";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/index3.html");
             viewName = "error";
         }
 
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/cine/readForDelete"})
+    @RequestMapping({"/pelicula/readForDelete"})
     public ModelAndView readForDelete(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -105,26 +107,26 @@ public class CineController {
             try {
                 id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
-                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un id_Cine válido"));
+                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un id válido"));
             }
 
-            Cine cine = cineDAO.get(id);
-            if (cine == null) {
-                throw new BussinessException(new BussinessMessage(null, "No existe el profesor con id_Cine=" + id));
+            Pelicula pelicula = peliculaDAO.get(id);
+            if (pelicula == null) {
+                throw new BussinessException(new BussinessMessage(null, "No existe el profesor con id=" + id));
             }
             model.put("formOperation", FormOperation.Delete);
-            model.put("cine", cine);
-            viewName = "cine";
+            model.put("pelicula", pelicula);
+            viewName = "pelicula";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/index3.html");
             viewName = "error";
         }
 
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/cine/insert.html"})
+    @RequestMapping({"/pelicula/insert.html"})
     public ModelAndView insert(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -135,26 +137,29 @@ public class CineController {
             throw new RuntimeException(ex);
         }
 
-        Cine cine = null;
+        Pelicula pelicula = null;
         try {
-            cine = cineDAO.create();
-            cine.setDirecionCine(request.getParameter("direcionCine"));
-            cine.setMunicipioCine(request.getParameter("minicipioCine"));
-            cine.setNombreCine(request.getParameter("nombreCine"));
+            pelicula = peliculaDAO.create();
+            pelicula.setTituloPelicula(request.getParameter("titulopelicula"));
+            pelicula.setDirectorPelicula(request.getParameter("directorpelicula"));
+            pelicula.setInterpretePelicula(request.getParameter("interpretepelicula"));
+            pelicula.setCategoriaPelicula(request.getParameter("categoriapelicula"));
+
+            
             //cine.setSesions(request.getParameter("sesion"));
 
 
-            cineDAO.saveOrUpdate(cine);
+            peliculaDAO.saveOrUpdate(pelicula);
 
-            viewName = "redirect:/index2.html";
+            viewName = "redirect:/index3.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            if (cine!=null) {
-                cine.setIdCine(0);
+            if (pelicula!=null) {
+                pelicula.setIdPelicula(0);
             }
-            model.put("cine", cine);
+            model.put("pelicula", pelicula);
             model.put("formOperation", FormOperation.Insert);
-            viewName = "cine";
+            viewName = "pelicula";
         }
 
 
@@ -162,7 +167,7 @@ public class CineController {
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/cine/update.html"})
+    @RequestMapping({"/pelicula/update.html"})
     public ModelAndView update(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -171,41 +176,42 @@ public class CineController {
         } catch (UnsupportedEncodingException ex) {
             throw new RuntimeException(ex);
         }
-        Cine cine = null;
+        Pelicula pelicula = null;
         try {
             int id;
             try {
                 id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
-                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un id_Cine válido"));
+                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un id válido"));
             }
-            cine = cineDAO.get(id);
-            if (cine == null) {
+            pelicula = peliculaDAO.get(id);
+            if (pelicula == null) {
                 throw new BussinessException(new BussinessMessage(null, "Ya no existe el profesor."));
             }
-           cine.setDirecionCine(request.getParameter("direcionCine"));
-            cine.setMunicipioCine(request.getParameter("minicipioCine"));
-            cine.setNombreCine(request.getParameter("nombreCine"));
+           pelicula.setTituloPelicula(request.getParameter("titulopelicula"));
+            pelicula.setDirectorPelicula(request.getParameter("directorpelicula"));
+            pelicula.setInterpretePelicula(request.getParameter("interpretepelicula"));
+            pelicula.setCategoriaPelicula(request.getParameter("categoriapelicula"));
 
-            cineDAO.saveOrUpdate(cine);
+            peliculaDAO.saveOrUpdate(pelicula);
 
-            viewName = "redirect:/index2.html";
+            viewName = "redirect:/index3.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("cine", cine);
+            model.put("pelicula", pelicula);
             model.put("formOperation", FormOperation.Update);
-            viewName = "cine";
+            viewName = "pelicula";
         }
 
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/cine/delete.html"})
+    @RequestMapping({"/pelicula/delete.html"})
     public ModelAndView delete(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
-        Cine cine=null;
+        Pelicula pelicula=null;
         try {
             int id;
             try {
@@ -213,19 +219,19 @@ public class CineController {
             } catch (NumberFormatException nfe) {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
             }
-            cine = cineDAO.get(id);
-            if (cine == null) {
+            pelicula = peliculaDAO.get(id);
+            if (pelicula == null) {
                 throw new BussinessException(new BussinessMessage(null, "Ya no existe el profesor a borrar"));
             }
 
-            cineDAO.delete(id);
+            peliculaDAO.delete(id);
 
-            viewName = "redirect:/index2.html";
+            viewName = "redirect:/index3.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("cine", cine);
+            model.put("pelicula", pelicula);
             model.put("formOperation", FormOperation.Delete);
-            viewName = "cine";
+            viewName = "pelicula";
         }
 
         return new ModelAndView(viewName, model);

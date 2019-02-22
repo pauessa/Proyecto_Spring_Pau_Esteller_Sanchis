@@ -14,5 +14,6 @@
 
     <bean class="com.fpmislata.persistencia.hibernate.HibernateUtil" factory-method="getSessionFactory"  />
     <bean class="ejemplo03.persistencia.dao.impl.CineDAOImplCartelera" />
+    <bean class="ejemplo03.persistencia.dao.impl.PeliculaDAOImplCartelera" />
 
 </beans>
