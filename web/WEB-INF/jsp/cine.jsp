@@ -35,6 +35,7 @@
         <script type="text/javascript"  src="<%=request.getContextPath()%>/js/bootstrap.js" ></script>
     </head>
     <body style="background:#FDFDFD">
+        
         <div class="row">
             <div class="span12">&nbsp;</div>
         </div>
@@ -69,7 +70,7 @@
                     <%} %>
                     <div class="form-actions">
                         <button id="aceptarBtn" class="btn btn-primary" type="submit"><%=labelButton%></button>
-                        <a class="btn" href="<%=request.getContextPath()%>/index2.html" >Cancelar</a>
+                        <a class="btn" href="<%=request.getContextPath()%>/cine.html" >Cancelar</a>
                     </div>
                 </form>
             </div>

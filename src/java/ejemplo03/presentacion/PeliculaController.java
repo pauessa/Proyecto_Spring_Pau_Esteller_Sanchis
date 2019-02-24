@@ -32,7 +32,7 @@ public class PeliculaController {
     @Autowired
     private PeliculaDAO peliculaDAO;
     
-    @RequestMapping({"/index3.html"})
+    @RequestMapping({"/pelicula.html"})
     public ModelAndView listarPelicula(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -43,7 +43,7 @@ public class PeliculaController {
             viewName = "peliculaLista";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index3.html");
+            model.put("backURL", request.getContextPath() + "/pelicula.html");
             viewName = "error";
         }
 
@@ -62,7 +62,7 @@ public class PeliculaController {
             viewName = "pelicula";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index3.html");
+            model.put("backURL", request.getContextPath() + "/pelicula.html");
             viewName = "error";
         }
 
@@ -91,7 +91,7 @@ public class PeliculaController {
             viewName = "pelicula";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index3.html");
+            model.put("backURL", request.getContextPath() + "/pelicula.html");
             viewName = "error";
         }
 
@@ -119,7 +119,7 @@ public class PeliculaController {
             viewName = "pelicula";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index3.html");
+            model.put("backURL", request.getContextPath() + "/pelicula.html");
             viewName = "error";
         }
 
@@ -151,7 +151,7 @@ public class PeliculaController {
 
             peliculaDAO.saveOrUpdate(pelicula);
 
-            viewName = "redirect:/index3.html";
+            viewName = "redirect:/pelicula.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             if (pelicula!=null) {
@@ -195,7 +195,7 @@ public class PeliculaController {
 
             peliculaDAO.saveOrUpdate(pelicula);
 
-            viewName = "redirect:/index3.html";
+            viewName = "redirect:/pelicula.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             model.put("pelicula", pelicula);
@@ -226,7 +226,7 @@ public class PeliculaController {
 
             peliculaDAO.delete(id);
 
-            viewName = "redirect:/index3.html";
+            viewName = "redirect:/pelicula.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             model.put("pelicula", pelicula);

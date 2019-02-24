@@ -50,13 +50,13 @@
                         <input class="input-xlarge" id="titulopelicula" type="text" name="titulopelicula" value="${pelicula.tituloPelicula}" >
                        
                         <label class="control-label" for="directorpelicula">Director:</label>
-                        <input class="input-xlarge" id="titulopelicula" type="text" name="directorpelicula" value="${pelicula.directorpelicula}" >
+                        <input class="input-xlarge" id="titulopelicula" type="text" name="directorpelicula" value="${pelicula.directorPelicula}" >
                
                         <label class="control-label" for="interpretepelicula">Interprete:</label>
-                        <input class="input-xlarge" id="titulopelicula" type="text" name="interpretepelicula" value="${pelicula.interpretepelicula}" >
+                        <input class="input-xlarge" id="interpretepelicula" type="text" name="interpretepelicula" value="${pelicula.interpretePelicula}" >
                
                         <label class="control-label" for="categoriapelicula">Categoria:</label>
-                        <input class="input-xlarge" id="titulopelicula" type="text" name="categoriapelicula" value="${pelicula.categoriapelicula}" >
+                        <input class="input-xlarge" id="titulopelicula" type="text" name="categoriapelicula" value="${pelicula.categoriaPelicula}" >
                
                         
                         
@@ -79,7 +79,7 @@
                     <%} %>
                     <div class="form-actions">
                         <button id="aceptarBtn" class="btn btn-primary" type="submit"><%=labelButton%></button>
-                        <a class="btn" href="<%=request.getContextPath()%>/index3.html" >Cancelar</a>
+                        <a class="btn" href="<%=request.getContextPath()%>/pelicula.html" >Cancelar</a>
                     </div>
                 </form>
             </div>

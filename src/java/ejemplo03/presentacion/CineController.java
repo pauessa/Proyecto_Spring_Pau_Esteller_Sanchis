@@ -30,7 +30,7 @@ public class CineController {
     @Autowired
     private CineDAO cineDAO;
     
-    @RequestMapping({"/index2.html"})
+    @RequestMapping({"/cine.html"})
     public ModelAndView listarCines(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -41,7 +41,7 @@ public class CineController {
             viewName = "cinesLista";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/cine.html");
             viewName = "error";
         }
 
@@ -60,7 +60,7 @@ public class CineController {
             viewName = "cine";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/cine.html");
             viewName = "error";
         }
 
@@ -89,7 +89,7 @@ public class CineController {
             viewName = "cine";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/cine.html");
             viewName = "error";
         }
 
@@ -117,7 +117,7 @@ public class CineController {
             viewName = "cine";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/index2.html");
+            model.put("backURL", request.getContextPath() + "/cine.html");
             viewName = "error";
         }
 
@@ -146,7 +146,7 @@ public class CineController {
 
             cineDAO.saveOrUpdate(cine);
 
-            viewName = "redirect:/index2.html";
+            viewName = "redirect:/cine.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             if (cine!=null) {
@@ -189,7 +189,7 @@ public class CineController {
 
             cineDAO.saveOrUpdate(cine);
 
-            viewName = "redirect:/index2.html";
+            viewName = "redirect:/cine.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             model.put("cine", cine);
@@ -220,7 +220,7 @@ public class CineController {
 
             cineDAO.delete(id);
 
-            viewName = "redirect:/index2.html";
+            viewName = "redirect:/cine.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             model.put("cine", cine);
