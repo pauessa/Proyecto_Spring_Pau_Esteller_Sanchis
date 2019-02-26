@@ -69,34 +69,6 @@
 
 
 
-                    <table class="table table-bordered table-hover table-condensed">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nombre</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%
-                                List<Sesion> sesiones = (List<Sesion>) request.getAttribute("sesiones");
-
-                                for (Sesion s : sesiones) {
-
-
-                            %>
-                            <tr>
-                                <td><%=HtmlUtils.htmlEscape(s.getDiaSesion())%></td>
-                                <td><%=HtmlUtils.htmlEscape(s.getHorasSesion())%></td>
-
-
-
-                            </tr>
-                            <%
-                                }
-                            %>
-                        </tbody>
-                    </table>
 
 
 
