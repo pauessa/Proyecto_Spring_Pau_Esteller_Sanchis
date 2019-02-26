@@ -1,3 +1,5 @@
+<%@page import="ejemplo03.dominio.Sesion"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Set"%>
 <%@page import="org.springframework.web.util.HtmlUtils"%>
 <%@page import="com.fpmislata.persistencia.dao.BussinessMessage"%>
@@ -28,7 +30,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cine</title>
+        <title>Pelicula</title>
         <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
         <link href="<%=request.getContextPath()%>/css/bootstrap-responsive.css" rel="stylesheet">
         <script type="text/javascript"  src="<%=request.getContextPath()%>/js/jquery-1.9.0.js"></script>
@@ -40,27 +42,66 @@
         </div>
         <div class="row">
             <div class="offset1 span10 well">
-                <h3>Cine</h3>
+                <h3>Pelicula</h3>
                 <form action="<%=urlAction%>" method="post" >
                     <fieldset>
                         <label class="control-label" for="id">Id:</label>
                         <input class="input-large disabled " id="id" name="id" type="text" value="${pelicula.idPelicula}" readonly="readonly">
 
-                        <label class="control-label" for="nombreCine">Nombre:</label>
+                        <label class="control-label" for="nombrePelicula">Nombre:</label>
                         <input class="input-xlarge" id="titulopelicula" type="text" name="titulopelicula" value="${pelicula.tituloPelicula}" >
-                       
+
                         <label class="control-label" for="directorpelicula">Director:</label>
                         <input class="input-xlarge" id="titulopelicula" type="text" name="directorpelicula" value="${pelicula.directorPelicula}" >
-               
+
                         <label class="control-label" for="interpretepelicula">Interprete:</label>
                         <input class="input-xlarge" id="interpretepelicula" type="text" name="interpretepelicula" value="${pelicula.interpretePelicula}" >
-               
+
                         <label class="control-label" for="categoriapelicula">Categoria:</label>
                         <input class="input-xlarge" id="titulopelicula" type="text" name="categoriapelicula" value="${pelicula.categoriaPelicula}" >
-               
-                        
-                        
-                        </fieldset>
+
+
+
+                    </fieldset>
+
+
+
+
+
+
+                    <table class="table table-bordered table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                                List<Sesion> sesiones = (List<Sesion>) request.getAttribute("sesiones");
+
+                                for (Sesion s : sesiones) {
+
+
+                            %>
+                            <tr>
+                                <td><%=HtmlUtils.htmlEscape(s.getDiaSesion())%></td>
+                                <td><%=HtmlUtils.htmlEscape(s.getHorasSesion())%></td>
+
+
+
+                            </tr>
+                            <%
+                                }
+                            %>
+                        </tbody>
+                    </table>
+
+
+
+
+
                     <% if (request.getAttribute("bussinessMessages") != null) {%>
                     <div class="alert alert-error alert-block">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -76,7 +117,7 @@
                             <%} %>
                         </ul>
                     </div>
-                    <%} %>
+                    <%}%>
                     <div class="form-actions">
                         <button id="aceptarBtn" class="btn btn-primary" type="submit"><%=labelButton%></button>
                         <a class="btn" href="<%=request.getContextPath()%>/pelicula.html" >Cancelar</a>

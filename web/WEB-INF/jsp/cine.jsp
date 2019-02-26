@@ -52,6 +52,9 @@
                         <label class="control-label" for="direcionCine">Direcion</label>
                         <input class="input-xlarge" id="direcion" type="text" name="direcionCine" value="${cine.direcionCine}" >
                         </fieldset>
+                        
+                        
+                        
                     <% if (request.getAttribute("bussinessMessages") != null) {%>
                     <div class="alert alert-error alert-block">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>

@@ -7,7 +7,9 @@ package ejemplo03.presentacion;
 import com.fpmislata.persistencia.dao.BussinessException;
 import com.fpmislata.persistencia.dao.BussinessMessage;
 import ejemplo03.dominio.Cine;
+import ejemplo03.dominio.Sesion;
 import ejemplo03.persistencia.dao.CineDAO;
+import ejemplo03.persistencia.dao.SesionDAO;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
@@ -25,49 +27,49 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Lorenzo González
  */
 @Controller
-public class CineController {
+public class SesionController {
 
     @Autowired
-    private CineDAO cineDAO;
+    private SesionDAO sesionDAO;
     
-    @RequestMapping({"/cine.html"})
-    public ModelAndView listarCines(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping({"/sesion.html"})
+    public ModelAndView listarSesions(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
         try {
-            List<Cine> cines=cineDAO.findAll();
-            model.put("cines",cines);
-            viewName = "cinesLista";
+            List<Sesion> sesions=sesionDAO.findAll();
+            model.put("sesions",sesions);
+            viewName = "SesionsLista";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/cine.html");
+            model.put("backURL", request.getContextPath() + "/sesion.html");
             viewName = "error";
         }
 
         return new ModelAndView(viewName, model);
     }
     
-    @RequestMapping({"/cine/newForInsert"})
+    @RequestMapping({"/sesion/newForInsert"})
     public ModelAndView newForInsert(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
         try {
-            Cine cine = cineDAO.create();
+            Sesion sesion = sesionDAO.create();
             model.put("formOperation", FormOperation.Insert);
-            model.put("cine", cine);
-            viewName = "cine";
+            model.put("sesion", sesion);
+            viewName = "sesion";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/cine.html");
+            model.put("backURL", request.getContextPath() + "/sesion.html");
             viewName = "error";
         }
 
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/cine/readForUpdate"})
+    @RequestMapping({"/sesion/readForUpdate"})
     public ModelAndView readForUpdate(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -80,23 +82,23 @@ public class CineController {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un id_Cine válido"));
             }
 
-            Cine cine = cineDAO.get(id);
-            if (cine == null) {
+            Sesion sesion = sesionDAO.get(id);
+            if (sesion == null) {
                 throw new BussinessException(new BussinessMessage(null, "No existe el profesor con id_Cine=" + id));
             }
             model.put("formOperation", FormOperation.Update);
-            model.put("cine", cine);
-            viewName = "cine";
+            model.put("sesion", sesion);
+            viewName = "sesion";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/cine.html");
+            model.put("backURL", request.getContextPath() + "/sesion.html");
             viewName = "error";
         }
 
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/cine/readForDelete"})
+    @RequestMapping({"/sesion/readForDelete"})
     public ModelAndView readForDelete(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -105,26 +107,26 @@ public class CineController {
             try {
                 id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
-                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un id_Cine válido"));
+                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un sesion válido"));
             }
 
-            Cine cine = cineDAO.get(id);
-            if (cine == null) {
-                throw new BussinessException(new BussinessMessage(null, "No existe el profesor con id_Cine=" + id));
+            Sesion sesion = sesionDAO.get(id);
+            if (sesion == null) {
+                throw new BussinessException(new BussinessMessage(null, "No existe el profesor con sesion=" + id));
             }
             model.put("formOperation", FormOperation.Delete);
-            model.put("cine", cine);
-            viewName = "cine";
+            model.put("sesion", sesion);
+            viewName = "sesion";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("backURL", request.getContextPath() + "/cine.html");
+            model.put("backURL", request.getContextPath() + "/sesion.html");
             viewName = "error";
         }
 
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/cine/insert.html"})
+    @RequestMapping({"/sesion/insert.html"})
     public ModelAndView insert(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -135,26 +137,25 @@ public class CineController {
             throw new RuntimeException(ex);
         }
 
-        Cine cine = null;
+        Sesion sesion = null;
         try {
-            cine = cineDAO.create();
-            cine.setDirecionCine(request.getParameter("direcionCine"));
-            cine.setMunicipioCine(request.getParameter("minicipioCine"));
-            cine.setNombreCine(request.getParameter("nombreCine"));
-            //cine.setSesions(request.getParameter("sesion"));
+            sesion = sesionDAO.create();
+            sesion.setDiaSesion(request.getParameter("diaSesion"));
+            sesion.setHorasSesion(request.getParameter("horasSesion"));
+            
 
 
-            cineDAO.saveOrUpdate(cine);
+            sesionDAO.saveOrUpdate(sesion);
 
-            viewName = "redirect:/cine.html";
+            viewName = "redirect:/sesion.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            if (cine!=null) {
-                cine.setIdCine(0);
+            if (sesion!=null) {
+                sesion.setIdSesion(0);
             }
-            model.put("cine", cine);
+            model.put("sesion", sesion);
             model.put("formOperation", FormOperation.Insert);
-            viewName = "cine";
+            viewName = "sesion";
         }
 
 
@@ -162,7 +163,7 @@ public class CineController {
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/cine/update.html"})
+    @RequestMapping({"/sesion/update.html"})
     public ModelAndView update(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
@@ -171,41 +172,40 @@ public class CineController {
         } catch (UnsupportedEncodingException ex) {
             throw new RuntimeException(ex);
         }
-        Cine cine = null;
+        Sesion sesion = null;
         try {
             int id;
             try {
                 id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
-                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un id_Cine válido"));
+                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un sesion válido"));
             }
-            cine = cineDAO.get(id);
-            if (cine == null) {
+            sesion = sesionDAO.get(id);
+            if (sesion == null) {
                 throw new BussinessException(new BussinessMessage(null, "Ya no existe el profesor."));
             }
-           cine.setDirecionCine(request.getParameter("direcionCine"));
-            cine.setMunicipioCine(request.getParameter("minicipioCine"));
-            cine.setNombreCine(request.getParameter("nombreCine"));
+           sesion.setDiaSesion(request.getParameter("diaSesion"));
+            sesion.setHorasSesion(request.getParameter("horasSesion"));
 
-            cineDAO.saveOrUpdate(cine);
+            sesionDAO.saveOrUpdate(sesion);
 
-            viewName = "redirect:/cine.html";
+            viewName = "redirect:/sesion.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("cine", cine);
+            model.put("sesion", sesion);
             model.put("formOperation", FormOperation.Update);
-            viewName = "cine";
+            viewName = "sesion";
         }
 
         return new ModelAndView(viewName, model);
     }
 
-    @RequestMapping({"/cine/delete.html"})
+    @RequestMapping({"/sesion/delete.html"})
     public ModelAndView delete(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
-        Cine cine=null;
+        Sesion sesion=null;
         try {
             int id;
             try {
@@ -213,19 +213,19 @@ public class CineController {
             } catch (NumberFormatException nfe) {
                 throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
             }
-            cine = cineDAO.get(id);
-            if (cine == null) {
+            sesion = sesionDAO.get(id);
+            if (sesion == null) {
                 throw new BussinessException(new BussinessMessage(null, "Ya no existe el profesor a borrar"));
             }
 
-            cineDAO.delete(id);
+            sesionDAO.delete(id);
 
-            viewName = "redirect:/cine.html";
+            viewName = "redirect:/sesion.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            model.put("cine", cine);
+            model.put("sesion", sesion);
             model.put("formOperation", FormOperation.Delete);
-            viewName = "cine";
+            viewName = "sesion";
         }
 
         return new ModelAndView(viewName, model);

@@ -6,11 +6,14 @@ package ejemplo03.presentacion;
 
 import com.fpmislata.persistencia.dao.BussinessException;
 import com.fpmislata.persistencia.dao.BussinessMessage;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import ejemplo03.dominio.Cine;
 import ejemplo03.dominio.Pelicula;
+import ejemplo03.dominio.Sesion;
 import ejemplo03.persistencia.dao.CineDAO;
 import ejemplo03.persistencia.dao.PeliculaDAO;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,15 +34,15 @@ public class PeliculaController {
 
     @Autowired
     private PeliculaDAO peliculaDAO;
-    
+
     @RequestMapping({"/pelicula.html"})
     public ModelAndView listarPelicula(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
         try {
-            List<Pelicula> pelicules=peliculaDAO.findAll();
-            model.put("pelicules",pelicules);
+            List<Pelicula> pelicules = peliculaDAO.findAll();
+            model.put("pelicules", pelicules);
             viewName = "peliculaLista";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
@@ -49,7 +52,7 @@ public class PeliculaController {
 
         return new ModelAndView(viewName, model);
     }
-    
+
     @RequestMapping({"/pelicula/newForInsert"})
     public ModelAndView newForInsert(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> model = new HashMap<String, Object>();
@@ -79,7 +82,7 @@ public class PeliculaController {
             try {
                 id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
-                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un id válido"));
+                throw new BussinessException(new BussinessMessage(null, "Se debe escribir un id válido"));
             }
 
             Pelicula pelicula = peliculaDAO.get(id);
@@ -107,7 +110,7 @@ public class PeliculaController {
             try {
                 id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
-                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un id válido"));
+                throw new BussinessException(new BussinessMessage(null, "Se debe escribir un id válido"));
             }
 
             Pelicula pelicula = peliculaDAO.get(id);
@@ -145,24 +148,19 @@ public class PeliculaController {
             pelicula.setInterpretePelicula(request.getParameter("interpretepelicula"));
             pelicula.setCategoriaPelicula(request.getParameter("categoriapelicula"));
 
-            
             //cine.setSesions(request.getParameter("sesion"));
-
-
             peliculaDAO.saveOrUpdate(pelicula);
 
             viewName = "redirect:/pelicula.html";
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
-            if (pelicula!=null) {
+            if (pelicula != null) {
                 pelicula.setIdPelicula(0);
             }
             model.put("pelicula", pelicula);
             model.put("formOperation", FormOperation.Insert);
             viewName = "pelicula";
         }
-
-
 
         return new ModelAndView(viewName, model);
     }
@@ -182,13 +180,13 @@ public class PeliculaController {
             try {
                 id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
-                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un id válido"));
+                throw new BussinessException(new BussinessMessage(null, "Se debe escribir un id válido"));
             }
             pelicula = peliculaDAO.get(id);
             if (pelicula == null) {
                 throw new BussinessException(new BussinessMessage(null, "Ya no existe el profesor."));
             }
-           pelicula.setTituloPelicula(request.getParameter("titulopelicula"));
+            pelicula.setTituloPelicula(request.getParameter("titulopelicula"));
             pelicula.setDirectorPelicula(request.getParameter("directorpelicula"));
             pelicula.setInterpretePelicula(request.getParameter("interpretepelicula"));
             pelicula.setCategoriaPelicula(request.getParameter("categoriapelicula"));
@@ -199,6 +197,9 @@ public class PeliculaController {
         } catch (BussinessException ex) {
             model.put("bussinessMessages", ex.getBussinessMessages());
             model.put("pelicula", pelicula);
+            List<Sesion> sesiones = new ArrayList<Sesion>();
+            sesiones.addAll(pelicula.getSesions());
+            model.put("sesiones", sesiones);
             model.put("formOperation", FormOperation.Update);
             viewName = "pelicula";
         }
@@ -211,13 +212,13 @@ public class PeliculaController {
         Map<String, Object> model = new HashMap<String, Object>();
         String viewName;
 
-        Pelicula pelicula=null;
+        Pelicula pelicula = null;
         try {
             int id;
             try {
                 id = Integer.parseInt(request.getParameter("id"));
             } catch (NumberFormatException nfe) {
-                throw new BussinessException(new BussinessMessage(null,"Se debe escribir un Id válido"));
+                throw new BussinessException(new BussinessMessage(null, "Se debe escribir un Id válido"));
             }
             pelicula = peliculaDAO.get(id);
             if (pelicula == null) {
